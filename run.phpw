@@ -1,0 +1,9 @@
+#!/usr/bin/php
+<?php
+	if (!extension_loaded('gtk') and !extension_loaded('php-gtk')) 
+		{ 
+		dl( 'php_gtk2.' . PHP_SHLIB_SUFFIX); 
+		}
+		
+	include('main.php');
+?>

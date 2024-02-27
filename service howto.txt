@@ -1,0 +1,22 @@
+
+	rem ## INSTALLATION DU SERVICE ##
+	
+	rem DEBUG MODE : seulement quand un utilisateur se connecte
+
+		sc create WvSystemTaskDaemon type=interact start=auto binPath=c:\std-php\gtksrc\SystemTaskDaemon.bat depend=Workstation obj=Fred password=ncc
+
+	rem PROD MODE : on peut changer le nom affiché, on peut etre obligé de préciser un utilisateur dans un domaine DOMAIN\Admin ou .\Serv
+	rem ex1 : sc create WvSystemTaskDaemon binPath= c:\std-php\gtksrc\SystemTaskDaemon.bat type= interact start= auto obj= Fred password= ncc
+
+		sc create WvSystemTaskDaemon binPath= "c:\std-php\gtksrc\deploy\SystemTaskDaemonService.exe" DisplayName= "Wv SystemTaskDaemon" start= "auto" obj= .\serv password= "serv"
+
+	rem ## GESTION DU SERVICE EN LIGNE DE COMMANDE ##
+	rem permet de voir certains messages d'erreur
+
+	rem DEMARRAGE MANUEL
+		net start WvSystemTaskDaemon
+	rem ARRET MANUEL
+		net stop WvSystemTaskDaemon
+	rem SUPPRESSION
+		sc delete WvSystemTaskDaemon
+	
